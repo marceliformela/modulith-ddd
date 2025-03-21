@@ -1,4 +1,4 @@
-package com.example.rental.catalog.domain;
+package com.example.library.catalog.domain;
 
 import jakarta.persistence.*;
 
