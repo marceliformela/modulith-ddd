@@ -1,4 +1,4 @@
-package com.example.rental;
+package com.example.library;
 
 import org.springframework.boot.SpringApplication;
 

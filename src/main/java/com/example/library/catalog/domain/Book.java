@@ -1,50 +1,53 @@
 package com.example.library.catalog.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
 
 import java.util.Objects;
 
 @Entity
-public class Car {
-
+public class Book {
     @EmbeddedId
-    private CarId id;
-    private String modelName;
+    private BookId id;
+    private String title;
     @Embedded
-    @AttributeOverride(name = "value", column = @Column(name = "plate"))
-    private Plate plate;
+    @AttributeOverride(name = "value", column = @Column(name = "isbn"))
+    private Isbn isbn;
 
-    public Car(String modelName, Plate plate) {
-        this.id = new CarId();
-        this.modelName = modelName;
-        this.plate = plate;
+    public Book() {
     }
 
-    public Car() {
+    public Book(String title, Isbn isbn) {
+        this.id = new BookId();
+        this.title = title;
+        this.isbn = isbn;
     }
 
-    public CarId getId() {
+    public BookId getId() {
         return id;
     }
 
-    public String getModelName() {
-        return modelName;
+    public String getTitle() {
+        return title;
     }
 
-    public Plate getPlate() {
-        return plate;
+    public Isbn getIsbn() {
+        return isbn;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Car car = (Car) o;
-        return Objects.equals(id, car.id);
+        Book book = (Book) o;
+        return Objects.equals(id, book.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hashCode(id);
     }
 }
